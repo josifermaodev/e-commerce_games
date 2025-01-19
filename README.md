@@ -1,99 +1,167 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# CRUD de E-commerce de Games
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este projeto implementa um sistema CRUD para um e-commerce de games, com funcionalidades relacionadas a produtos e categorias. A aplicação foi desenvolvida com foco em boas práticas de organização e escalabilidade.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Estrutura das Tabelas
 
-## Description
+O projeto possui duas entidades principais relacionadas:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Produtos
+- Representa os jogos disponíveis no e-commerce.
+- Contém informações como nome, preço, descrição e categoria associada.
 
-## Project setup
+### Categorias
+- Representa as categorias que organizam os produtos, como "Ação", "RPG" ou "Esportes".
+- Permite organizar e filtrar os produtos por tipos específicos.
+
+## Funcionalidades
+
+### Produtos
+
+- Listar todos os produtos
+- Buscar por ID
+- Buscar por nome
+- Filtrar por preço (crescente)
+- Ordenar por nome (A-Z ou Z-A)
+- Criar produto
+- Atualizar produto
+- Excluir produto
+
+### Categorias
+
+- Listar todas as categorias
+- Buscar por ID
+- Buscar por descrição
+- Criar categoria
+- Atualizar categoria
+- Excluir categoria
+
+## Configuração do Projeto
+
+### Pré-requisitos
+
+- Node.js
+- Gerenciador de pacotes (npm ou yarn)
+- Banco de dados configurado
+
+### Instalação
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/josifermaodev/e-commerce_games.git
+   ```
+
+2. Instale as dependências:
+   ```bash
+   npm install
+   # ou
+   yarn install
+   ```
+
+3. Configure as variáveis de ambiente no arquivo `.env`.
+
+4. Inicie o servidor:
+   ```bash
+   npm run start
+   # ou
+   yarn start
+   ```
+
+## Tecnologias Utilizadas
+
+- **NestJS:** Framework para construção do back-end.
+- **TypeScript:** Linguagem utilizada no projeto.
+- **TypeORM:** ORM para gerenciar o banco de dados.
+- **MySQL:** Banco de dados utilizado para armazenar os dados.
+
+
+### Segue a lista de alguns produtos para serem cadastrados para realização de testes:
 
 ```bash
-$ npm install
+[
+	{
+		"id": 1,
+		"nome": "Halo Infinity",
+		"preco": 139.9,
+		"imagem": "https://ik.imagekit.io/q5tv5x3k8/halo.png?updatedAt=1737306502816",
+		"video": "https://youtu.be/tMDKsQ6Qkn8?si=yKHUXTmRmfeLuDYj",
+		"estoque": 25,
+		"categoria": {
+			"id": 1,
+			"descricao": "FPS"
+		}
+	},
+	{
+		"id": 2,
+		"nome": "Blood Born",
+		"preco": 257.9,
+		"imagem": "https://ik.imagekit.io/q5tv5x3k8/bloodborne-fundo-cinza.png?updatedAt=1737306502736",
+		"video": "https://youtu.be/bfxOYfo4A_I?si=WG9EGQcRqVJdlBNF",
+		"estoque": 13,
+		"categoria": {
+			"id": 2,
+			"descricao": "RPG"
+		}
+	},
+	{
+		"id": 3,
+		"nome": "Hogwarts Legacy",
+		"preco": 189.9,
+		"imagem": "https://ik.imagekit.io/q5tv5x3k8/hogwarts.png?updatedAt=1737306502701",
+		"video": "https://youtu.be/FkRmbRKLwoc?si=zL_O0_l91mJeWK0o",
+		"estoque": 35,
+		"categoria": {
+			"id": 2,
+			"descricao": "RPG"
+		}
+	},
+	{
+		"id": 4,
+		"nome": "Shadow of the Tomb Raider",
+		"preco": 289.9,
+		"imagem": "https://ik.imagekit.io/q5tv5x3k8/tomb_raider-min.png?updatedAt=1737306502509",
+		"video": "https://youtu.be/SQWkWGHraGU?si=oVQ0ux3Ob047X6zj",
+		"estoque": 21,
+		"categoria": {
+			"id": 3,
+			"descricao": "Ação e Aventura"
+		}
+	},
+	{
+		"id": 5,
+		"nome": "Jogo Pokemon Ruby Version Original",
+		"preco": 429.9,
+		"imagem": "https://ik.imagekit.io/q5tv5x3k8/Pok%C3%A9mon_Platinum_cover.png?updatedAt=1737306502483",
+		"video": "https://youtu.be/rsjsahTqTSo?si=02PTxPeJkIboeJmK",
+		"estoque": 8,
+		"categoria": {
+			"id": 2,
+			"descricao": "RPG"
+		}
+	},
+	{
+		"id": 6,
+		"nome": "Spider-Man",
+		"preco": 154.99,
+		"imagem": "https://ik.imagekit.io/q5tv5x3k8/Spider-Man_jogo_2018_capa.png?updatedAt=1737306502483",
+		"video": "https://www.youtube.com/live/oEUGhLOe0fM?si=JMNKf7hSUM-xKIJX",
+		"estoque": 17,
+		"categoria": {
+			"id": 3,
+			"descricao": "Ação e Aventura"
+		}
+	},
+	{
+		"id": 7,
+		"nome": "Grand Theft Auto 5",
+		"preco": 97.91,
+		"imagem": "https://ik.imagekit.io/q5tv5x3k8/Figura-9-Capa-do-jogo-Grand-Theft-Auto.png?updatedAt=1737306502041",
+		"video": "https://youtu.be/LJfgtPqzbPs?si=KAUktDxbWbPSEirz",
+		"estoque": 44,
+		"categoria": {
+			"id": 4,
+			"descricao": "Simulação"
+		}
+	}
+]
 ```
-
-## Compile and run the project
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
