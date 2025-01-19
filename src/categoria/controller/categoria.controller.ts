@@ -3,7 +3,7 @@ import { Categorias } from "../entities/categoria.entity";
 import { CategoriaService } from "../service/categoria.service";
 
 
-@Controller('/produtos')
+@Controller('/categorias')
 export class CategoriaController{
     constructor(
         private readonly categoriaService: CategoriaService,
@@ -21,7 +21,7 @@ export class CategoriaController{
         return this.categoriaService.findById(id);
     }
 
-    @Get('/categorias/:descricao')
+    @Get('/descricao/:descricao')
     @HttpCode(HttpStatus.OK)
     findByDescricao(@Param('descricao') descricao: string): Promise<Categorias[]> {
         return this.categoriaService.findByDescricao(descricao);
