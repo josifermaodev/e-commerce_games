@@ -8,7 +8,7 @@ import { DeleteResult, ILike, Repository } from "typeorm";
 export class CategoriaService{
     constructor(
         @InjectRepository(Categorias)
-        private categoriaRepository: Repository<Categorias>,
+        private categoriaRepository: Repository<Categorias>
     ){}
 
     async findAll(): Promise<Categorias[]> {

@@ -11,10 +11,6 @@ export class Produtos{
     id: number;
 
     @Transform(({ value }: TransformFnParams) => value?.trim())
-    @Column({length: 2000, nullable: false})
-    imagem: string;
-
-    @Transform(({ value }: TransformFnParams) => value?.trim())
     @IsNotEmpty()
     @Column({length: 100, nullable: false})
     nome: string;
@@ -25,13 +21,14 @@ export class Produtos{
     @Column({type: 'decimal', precision: 10, scale:2, transformer: new NumericTransformer()})
     preco: number;
 
-    @Transform(({ value }: TransformFnParams) => value?.trim())
-    @Column({length: 255, nullable: false})
-    desenvolvedor: string;
 
     @Transform(({ value }: TransformFnParams) => value?.trim())
     @Column({length: 2000, nullable: false})
-    demonstracao: string;
+    imagem: string;
+
+    @Transform(({ value }: TransformFnParams) => value?.trim())
+    @Column({length: 2000, nullable: false})
+    video: string;
 
     @IsNotEmpty()
     @Min(0)

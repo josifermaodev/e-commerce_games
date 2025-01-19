@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseFloatPipe, ParseIntPipe, Post, Put, Query } from "@nestjs/common";
 import { ProdutoService } from "../service/produto.service";
 import { Produtos } from "../entities/produto.entity";
 
@@ -21,10 +21,24 @@ export class ProdutoController{
         return this.produtoService.findById(id);
     }
 
-    @Get('/titulo/:titulo')
+    @Get('/nome/:nome')
     @HttpCode(HttpStatus.OK)
     findByNome(@Param('nome') nome: string): Promise<Produtos[]> {
         return this.produtoService.findByNome(nome);
+    }
+
+    // Método para filtrar produtos do maior preço para o menor
+    @Get('/preco/crescente')
+    @HttpCode(HttpStatus.OK)
+    findByPriceAsc(): Promise<Produtos[]> {
+        return this.produtoService.findByPriceAsc();
+    }
+
+    // Método para ordenar produtos pelo nome (A-Z ou Z-A)
+    @Get('/nome/ordenar')
+    @HttpCode(HttpStatus.OK)
+    findByNameOrder(@Query('order') order: 'ASC' | 'DESC'): Promise<Produtos[]> {
+        return this.produtoService.findByNameOrder(order);
     }
 
     @Post()

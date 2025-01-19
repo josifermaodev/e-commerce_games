@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Produtos } from "../entities/produto.entity";
-import { DeleteResult, ILike, Repository } from "typeorm";
+import { Between, DeleteResult, ILike, Repository } from "typeorm";
 import { CategoriaService } from "src/categoria/service/categoria.service";
 
 @Injectable()
@@ -45,6 +45,28 @@ export class ProdutoService{
                 categoria: true
             }
         })
+    }
+
+    async findByNameOrder(order: 'ASC' | 'DESC'): Promise<Produtos[]> {
+        return await this.produtoRepository.find({
+            order: {
+                nome: order 
+            },
+            relations: {
+                categoria: true 
+            }
+        });
+    }
+
+    async findByPriceAsc(): Promise<Produtos[]> {
+        return await this.produtoRepository.find({
+            order: {
+                preco: 'ASC'
+            },
+            relations: {
+                categoria: true 
+            }
+        });
     }
 
     async create(produto: Produtos): Promise<Produtos> {
