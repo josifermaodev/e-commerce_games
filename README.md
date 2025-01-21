@@ -75,7 +75,7 @@ O projeto possui duas entidades principais relacionadas:
 - **MySQL:** Banco de dados utilizado para armazenar os dados.
 
 
-Pelo fato de usar um servidor local aqui estão alguns produtos que podera cadastrar para realizar os testes:
+### Segue a lista de alguns produtos para serem cadastrados para realização de testes:
 
 ```bash
 [
