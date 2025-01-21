@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseFloatPipe, ParseIntPipe, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Param, ParseFloatPipe, ParseIntPipe, Post, Put, Query, UseGuards } from "@nestjs/common";
 import { ProdutoService } from "../service/produto.service";
 import { Produtos } from "../entities/produto.entity";
+import { JwtAuthGuard } from "src/auth/guard/jwt-auth.guard";
 
-
+@UseGuards(JwtAuthGuard)
 @Controller('/produtos')
 export class ProdutoController{
     constructor(
@@ -34,12 +35,18 @@ export class ProdutoController{
         return this.produtoService.findByPriceAsc();
     }
 
-    // Método para ordenar produtos pelo nome (A-Z ou Z-A)
-    @Get('/nome/ordenar')
+    @Get('/preco/decrescente')
     @HttpCode(HttpStatus.OK)
-    findByNameOrder(@Query('order') order: 'ASC' | 'DESC'): Promise<Produtos[]> {
-        return this.produtoService.findByNameOrder(order);
+    findByPriceDesc(): Promise<Produtos[]> {
+        return this.produtoService.findByPriceDesc();
     }
+
+    @Get('/preco/faixa')
+    @HttpCode(HttpStatus.OK)
+    findByPriceRange(@Query('min', ParseFloatPipe) min: number, @Query('max', ParseFloatPipe) max: number,): Promise<Produtos[]> {
+        return this.produtoService.findByPriceRange(min, max);
+    }
+    
 
     @Post()
     @HttpCode(HttpStatus.CREATED)

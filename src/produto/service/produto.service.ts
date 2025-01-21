@@ -15,7 +15,8 @@ export class ProdutoService{
     async findAll(): Promise<Produtos[]> {
         return await this.produtoRepository.find({
             relations:{
-                categoria: true
+                categoria: true,
+                usuario: true
             }
         });
     }
@@ -26,7 +27,8 @@ export class ProdutoService{
                 id
             },
             relations:{
-                categoria: true
+                categoria: true,
+                usuario: true
             }
         });
 
@@ -42,20 +44,10 @@ export class ProdutoService{
                 nome: ILike(`%${nome}%`)
             },
             relations:{
-                categoria: true
+                categoria: true,
+                usuario: true
             }
         })
-    }
-
-    async findByNameOrder(order: 'ASC' | 'DESC'): Promise<Produtos[]> {
-        return await this.produtoRepository.find({
-            order: {
-                nome: order 
-            },
-            relations: {
-                categoria: true 
-            }
-        });
     }
 
     async findByPriceAsc(): Promise<Produtos[]> {
@@ -64,8 +56,29 @@ export class ProdutoService{
                 preco: 'ASC'
             },
             relations: {
-                categoria: true 
+                categoria: true,
+                usuario: true
             }
+        });
+    }
+
+    async findByPriceDesc(): Promise<Produtos[]> {
+        return await this.produtoRepository.find({
+            order: {
+                preco: 'DESC'
+            },
+            relations: {
+                categoria: true,
+                usuario: true
+            }
+        });
+    }
+
+    async findByPriceRange(min: number, max: number): Promise<Produtos[]> {
+        return await this.produtoRepository.find({
+            where: {
+                preco: Between(min, max),
+            },
         });
     }
 
