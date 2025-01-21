@@ -14,27 +14,36 @@ O projeto possui duas entidades principais relacionadas:
 - Representa as categorias que organizam os produtos, como "Ação", "RPG" ou "Esportes".
 - Permite organizar e filtrar os produtos por tipos específicos.
 
-## Funcionalidades
+## Funcionalidades com caminhos para testes (insomnia)
 
 ### Produtos
 
-- Listar todos os produtos
-- Buscar por ID
-- Buscar por nome
-- Filtrar por preço (crescente)
-- Ordenar por nome (A-Z ou Z-A)
-- Criar produto
-- Atualizar produto
-- Excluir produto
+- Listar todos os produtos  (/produtos)
+- Buscar por ID  (/produtos/':id')
+- Buscar por nome  (produtos/nome/':nome')
+- Filtrar por preço (crescente)  (/produtos/preco/crescente)
+- Filtrar por preço (decrescente)  (/produtos/preco/decrescente)
+- Filtro por faixa de preço  (/produtos/preco/faixa?min=100&max=300)
+- Criar produto  (/produtos  = body: JSON)
+- Atualizar produto  (/produtos = body: JSON)
+- Excluir produto  (/produtos/':id')
 
 ### Categorias
 
-- Listar todas as categorias
-- Buscar por ID
-- Buscar por descrição
-- Criar categoria
-- Atualizar categoria
-- Excluir categoria
+- Listar todas as categorias (/categorias)
+- Buscar por ID  (/categorias/':id')
+- Buscar por descrição  (/categorias/descricao/':texto')
+- Criar categoria  (/categorias = body: JSON)
+- Atualizar categoria  (/categorias = body: JSON)
+- Excluir categoria  (/categorias/':id') 
+
+### Usuário
+
+- Login  (/usuarios/logar  = body: JSON)
+- Listar todos os usuarios  (/usuarios/all)
+- Buscar por ID  (/usuarios/':id')
+- Criar usuario  (/usuarios/cadastrar  = body: JSON)
+- Atualizar usuario  (/usuarios/atualizar  = body: JSON)
 
 ## Configuração do Projeto
 
